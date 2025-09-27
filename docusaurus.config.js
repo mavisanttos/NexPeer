@@ -2,7 +2,7 @@
 // Configuração Docusaurus - apenas documentação
 
 const config = {
-  title: 'Minha Documentação',
+  title: 'NexPeer',
   tagline: 'Documentação do projeto',
   favicon: 'img/favicon.ico',
 
@@ -38,9 +38,9 @@ const config = {
     navbar: {
       title: '', // sem título
       logo: {
-        alt: 'Logo do Projeto',
+        alt: 'NexPeer',
         src: 'img/logo.svg',
-        href: '/docs/intro', // Logo abre doc inicial
+        href: '/intro', // Logo abre doc inicial
       },
       items: [
         {
@@ -53,7 +53,7 @@ const config = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} Meu Projeto.`,
+      copyright: `Copyright © ${new Date().getFullYear()} NexPeer.`,
     },
   },
 };
