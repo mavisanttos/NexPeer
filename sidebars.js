@@ -3,9 +3,10 @@
  */
 const sidebars = {
   tutorialSidebar: [
-    { type: 'doc', id: 'intro' },          // Página inicial
-    { type: 'doc', id: 'configuracoes' },  // Outro tópico
-    // Adicione mais documentos aqui conforme necessário
+    { type: 'doc', id: 'intro' },          
+    { type: 'doc', id: 'visao_geral' }, 
+    { type: 'doc', id: 'design' }, 
+    { type: 'doc', id: 'conclusao' },
   ],
 };
 
