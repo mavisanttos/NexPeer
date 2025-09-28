@@ -12,7 +12,7 @@ export default function Home() {
       <div style={{ padding: '2rem' }}>
         <h1>Bem-vindo à NexPeer</h1>
         <p>Plataforma de empréstimo e investimento peer-to-peer com transparência total.</p>
-        <Link to="/docs/introducao">
+        <Link to="/docs/intro">
           <button style={{ padding: '10px 20px', backgroundColor: '#2E7D32', color: 'white', border: 'none', borderRadius: '4px' }}>
             Ver Documentação
           </button>

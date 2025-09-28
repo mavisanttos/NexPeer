@@ -4,7 +4,7 @@
 const config = {
   title: 'NexPeer',
   tagline: 'Documentação do projeto',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/icon.png',
 
   url: 'http://localhost:3000',
   baseUrl: '/',
@@ -39,7 +39,7 @@ const config = {
       title: '', // sem título
       logo: {
         alt: 'NexPeer',
-        src: 'img/logo.svg',
+        src: 'img/icon.png',
         href: '/intro', // Logo abre doc inicial
       },
       items: [
