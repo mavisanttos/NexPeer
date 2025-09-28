@@ -4,8 +4,8 @@
 const sidebars = {
   tutorialSidebar: [
     { type: 'doc', id: 'intro' },          
-    { type: 'doc', id: 'visao_geral' }, 
-    { type: 'doc', id: 'design' }, 
+    { type: 'doc', id: 'escopo_projeto' }, 
+    { type: 'doc', id: 'design_desenvolvimento' }, 
     { type: 'doc', id: 'conclusao' },
   ],
 };
