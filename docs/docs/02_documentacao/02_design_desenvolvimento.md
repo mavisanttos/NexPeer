@@ -66,7 +66,7 @@ PostgreSQL, hospedado no Supabase: por oferecer suporte a queries complexas, boa
    - Figma para prototipagem e design de interfaces.
 
 ## 2.2. Arquitetura
-Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seguindo o padrão **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso desse padrão permite separar as responsabilidades do sistema em três componentes principais, de modo a facilitar a manutenção e o desenvolvimento colaborativo. Esta arquitetura, complementada por camadas de serviço e repositório, assegura a organização do código e a flexibilidade para futuras alterações.
+Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seguindo o padrão **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso desse padrão permite separar as responsabilidades do sistema em três componentes principais, de modo a facilitar a manutenção e o desenvolvimento colaborativo. Esta arquitetura, complementada por camadas de serviço e repositório, assegura a organização do código e a flexibilidade para futuras alterações (BARBOSA, 2021).
 
 * **Camadas da Arquitetura:**
     * **View (Front-end):** 
@@ -245,4 +245,92 @@ Para garantir a conformidade e a segurança, a tabela `contratos_ccb` armazena o
 
 ### 2.4.2. Consultas SQL
 
-## 2.3. WebAPI e Endpoints
+## 2.5. WebAPI e Endpoints
+Esta subseção (2.5) mostra como a aplicação se conecta à WebAPI e aos serviços externos que sustentam o funcionamento da aplicação, incluindo a comunicação com a blockchain. O objetivo é explicar de forma clara como os endpoints disponibilizam funcionalidades essenciais, como cadastro de usuários, solicitação de empréstimos, investimentos e execução de contratos financeiros peer-to-peer (P2P).
+
+A integração com a blockchain, através de smart contracts, garante que os contratos sejam registrados de forma imutável e auditável, oferecendo segurança jurídica e transparência nas transações. Nesta subseção, apresentamos o contrato principal utilizado no MVP e mostramos como ele se conecta à aplicação.
+
+## 2.5.1 Integração com Smart Contract
+
+&emsp; O contrato principal do MVP é o `SimpleP2PLoan`, que gerencia empréstimos entre tomadores e investidores, controlando valores, taxas, prazos e pagamentos. A seguir, é detalhado o funcionamento do contrato.
+
+### Smart Contract `SimpleP2PLoan`
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract SimpleP2PLoan { 
+    address public borrower; 
+    address public lender; 
+    uint256 public principal; 
+    uint256 public monthlyRate; 
+    uint256 public termMonths;
+    bool public isActive = true; 
+
+    event LoanCreated(address borrower, address lender, uint256 principal, uint256 rate, uint256 term);
+
+    constructor(
+        address _borrower,
+        uint256 _principal,
+        uint256 _monthlyRate,
+        uint256 _termMonths
+    ) payable {
+        require(msg.value == _principal, "Value must match loan amount"); 
+        require(_termMonths == 6 || _termMonths == 12 || _termMonths == 24, "Invalid term");
+
+        borrower = _borrower;
+        lender = msg.sender;
+        principal = _principal;
+        monthlyRate = _monthlyRate;
+        termMonths = _termMonths;
+
+        payable(_borrower).transfer(_principal);
+
+        emit LoanCreated(_borrower, msg.sender, _principal, _monthlyRate, _termMonths);
+    }
+
+    function repay() external payable {
+        require(msg.sender == borrower, "Only borrower can repay");
+        payable(lender).transfer(msg.value);
+    }
+}
+```
+#### Variáveis públicas
+- **borrower** e **lender**: armazenam os endereços Ethereum do tomador e do investidor.  
+- **principal**: valor total do empréstimo.  
+- **monthlyRate**: taxa de juros mensal, que pode ser baseada no score de crédito do tomador.  
+- **termMonths**: prazo do empréstimo em meses.  
+- **isActive**: indica se o contrato ainda está em vigor.  
+
+#### Eventos
+- **LoanCreated**: emitido na criação do contrato, registra o empréstimo na blockchain. Eventos permitem que o front-end ou outros serviços externos monitorem transações de forma confiável.  
+
+#### Construtor
+- Executado apenas uma vez na criação do contrato.  
+- Valida que o valor enviado corresponde ao empréstimo e que o prazo é válido (6, 12 ou 24 meses).  
+- Inicializa as variáveis e transfere o valor para o tomador.  
+- Emite o evento **LoanCreated**.  
+
+#### Função `repay`
+- Permite que o tomador pague de volta o empréstimo diretamente ao investidor.  
+- Valida que apenas o tomador pode executar a função.  
+- Transferência é feita automaticamente para o investidor.  
+
+A utilização da blockchain no NexPeer traz diversos benefícios estratégicos e operacionais. Por ser uma tecnologia distribuída e imutável, ela garante que todas as transações realizadas por meio dos contratos P2P sejam registradas de forma segura e auditável, sem possibilidade de alteração posterior. Isso aumenta a confiança entre tomadores e investidores, pois cada empréstimo e cada pagamento ficam registrados de forma transparente e permanente. (GONZALEZ, 2025)
+
+Além disso, a blockchain permite a automação de processos críticos por meio de smart contracts, reduzindo a necessidade de intervenção manual e minimizando erros ou fraudes. A execução automática de contratos financeiros, como a liberação de valores e o repasse de pagamentos, proporciona maior eficiência operacional e agilidade na experiência do usuário.  
+
+Outro ponto importante é a segurança jurídica: ao registrar os contratos na blockchain, o NexPeer garante um histórico verificável das transações, o que fortalece a conformidade regulatória e a proteção dos participantes da plataforma (THE COMPLIANCE DIGEST, 2024). 
+
+A integração do NexPeer com a blockchain, através de smart contracts como o `SimpleP2PLoan`, representa um passo fundamental para combinar tecnologia financeira de ponta com segurança, transparência e confiabilidade. Essa abordagem assegura que todas as operações P2P sejam rastreáveis, automatizadas e auditáveis, oferecendo uma experiência segura tanto para tomadores quanto para investidores, alinhada aos padrões do mercado financeiro digital.
+
+## Referências
+
+BARBOSA, Tadeu. Movendo a lógica de sua aplicação para Services e Repositories. DEV Community, 1 ago. 2021. Disponível em: https://dev.to/tadeubdev/movendo-a-logica-de-sua-aplicacao-para-services-e-repositories-4lee
+.Acesso em: 29 set. 2025.
+
+GONZALEZ, L. (2025). Blockchain’s Role in Peer-to-Peer Lending. California State University Long Beach, 2025. Disponível em: https://www.csulb.edu/cob-graduate-programs/faculty-and-research/article/blockchains-role-peer-to-peer-lending. Acesso em: 29 set. 2025.
+
+THE COMPLIANCE DIGEST. Blockchain and Smart Contracts in Compliance. 13 fev. 2024. Disponível em: https://thecompliancedigest.com/blockchain-and-smart-contracts-in-compliance/
+. Acesso em: 29 set. 2025.
