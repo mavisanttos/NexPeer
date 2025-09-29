@@ -3,7 +3,7 @@ id: design_desenvolvimento
 title: Design e Desenvolvimento da Aplicação
 ---
 
-# Design e Desenvolvimento da Aplicação
+# 2. Design e Desenvolvimento da Aplicação
 
 &emsp; Esta seção tem como objetivo apresentar, de forma clara e estruturada, as decisões de design de experiência do usuário (UX/UI) e as etapas técnicas de desenvolvimento que deram forma ao NexPeer, aplicativo mobile desenvolvido para a QI Tech. A solução foi concebida para permitir transações financeiras peer-to-peer (P2P) de maneira intuitiva, segura e eficiente, refletindo os princípios da empresa: inovação tecnológica, conformidade regulatória, usabilidade e confiabilidade no setor financeiro.
 
@@ -52,16 +52,27 @@ title: Design e Desenvolvimento da Aplicação
 
 </div>
 
-## Tecnologias utilizadas
+## 2.1. Tecnologias utilizadas
+Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços escolhidos para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
 
-## Arquitetura
+- **Front-end (Mobile App):** 
+React: escolhido por sua robustez e ampla comunidade, além de possibilitar desenvolvimento multiplataforma com alto desempenho.
+- **Back-end (API e lógica de negócios):**
+Desenvolvido em JavaScript com Node.js e Express.js, estruturado no modelo RESTful. Essa escolha garante rapidez no desenvolvimento, ampla documentação e facilidade de integração com serviços externos, além de boa compatibilidade com o PostgreSQL (via Supabase). O backend é responsável por autenticação, gerenciamento de usuários, processamento de transações P2P e comunicação segura entre cliente e servidor.
+- **Banco de Dados:** 
+PostgreSQL, hospedado no Supabase: por oferecer suporte a queries complexas, boa performance e integração facilitada com serviços modernos de backend-as-a-service.
+- **Ferramentas de Apoio:** 
+   - Git e GitHub para versionamento e colaboração em equipe 
+   - Figma para prototipagem e design de interfaces.
 
-## Protótipo de Alta Fidelidade
+## 2.2. Arquitetura
 
-## Modelagem de Banco de Dados
+## 2.3. Protótipo de Alta Fidelidade
 
-### Modelo Relacional
+## 2.4. Modelagem de Banco de Dados
 
-### Consultas SQL
+### 2.4.1. Modelo Relacional
 
-## WebAPI e Endpoints
+### 2.4.2. Consultas SQL
+
+## 2.3. WebAPI e Endpoints
