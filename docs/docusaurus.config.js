@@ -39,6 +39,8 @@ const config = {
       }),
     ],
   ],
+
+  themes: ['@docusaurus/theme-mermaid'], // <- Adicione esta linha
   
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
