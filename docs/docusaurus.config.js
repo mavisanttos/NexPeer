@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'NEXPEER',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/nexpeer-icon.ico',
 
   url: 'https://inteliprojects.github.io', // Atualize conforme sua organização
   baseUrl: '/NexPeer/',
@@ -48,7 +48,7 @@ const config = {
         title: 'NexPeer',
         logo: {
           alt: 'NexPeer',
-          src: 'img/logo.png',
+          src: 'img/nexpeer-logo.png',
         },
         items: [
           {
@@ -71,7 +71,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Documentação',
+                label: 'documentacao',
                 to: '/',
               },
             ],
