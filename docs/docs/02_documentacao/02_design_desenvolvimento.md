@@ -14,45 +14,44 @@ title: Design e Desenvolvimento da Aplicação
 &emsp; O objetivo desta parte da documentação é oferecer uma visão abrangente do processo de construção do NexPeer, destacando tanto as escolhas de design centradas no usuário quanto as boas práticas de engenharia de software adotadas durante o desenvolvimento, garantindo assim funcionalidade, desempenho, manutenibilidade e alinhamento com os mais altos padrões do mercado financeiro digital.
 
 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-  
   <a href="#tecnologias-utilizadas" style={{ textDecoration: 'none' }}>
     <div style={{ padding: '16px', border: '1px solid #5e5c5cff', borderRadius: '8px',}}>
       <h3>Tecnologias utilizadas</h3>
-      <p>Texto</p>
+      <p>Ferramentas e frameworks usados no NexPeer.</p>
     </div>
   </a>
 
   <a href="#arquitetura" style={{ textDecoration: 'none' }}>
     <div style={{ padding: '16px', border: '1px solid #5e5c5cff', borderRadius: '8px',}}>
       <h3>Arquitetura</h3>
-      <p>Texto</p>
+      <p>Estrutura MVC modular e escalável.</p>
     </div>
   </a>
 
-<a href="#protótipo-de-alta-fidelidade" style={{ textDecoration: 'none' }}>
+  <a href="#protótipo-de-alta-fidelidade" style={{ textDecoration: 'none' }}>
     <div style={{ padding: '16px', border: '1px solid #5e5c5cff', borderRadius: '8px',}}>
       <h3>Protótipo de Alta Fidelidade</h3>
-      <p>Texto</p>
+      <p>Simulação da experiência real do usuário.</p>
     </div>
   </a>
 
-<a href="#modelagem-de-banco-de-dados" style={{ textDecoration: 'none' }}>
+  <a href="#modelagem-de-banco-de-dados" style={{ textDecoration: 'none' }}>
     <div style={{ padding: '16px', border: '1px solid #5e5c5cff', borderRadius: '8px',}}>
       <h3 style={{ fontSize: '19px' }}>Modelagem de Banco de Dados</h3>
-      <p>Texto</p>
+      <p>Organização de dados para usuários, empréstimos e contratos.</p>
     </div>
   </a>
 
-<a href="#webapi-e-endpoints" style={{ textDecoration: 'none', }}>
+  <a href="#webapi-e-endpoints" style={{ textDecoration: 'none', }}>
     <div style={{ padding: '16px', border: '1px solid #5e5c5cff', borderRadius: '8px',}}>
       <h3>WebAPI e Endpoints</h3>
-      <p>Texto</p>
+      <p>Comunicação segura entre front-end, back-end e blockchain.</p>
     </div>
   </a>
 
 </div>
 
-## 2.1. Tecnologias utilizadas
+## 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
 Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços escolhidos para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
 
 - **Front-end (Mobile App):** 
@@ -65,7 +64,7 @@ PostgreSQL, hospedado no Supabase: por oferecer suporte a queries complexas, boa
    - Git e GitHub para versionamento e colaboração em equipe 
    - Figma para prototipagem e design de interfaces.
 
-## 2.2. Arquitetura
+## 2.2. Arquitetura {#arquitetura} 
 Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seguindo o padrão **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso desse padrão permite separar as responsabilidades do sistema em três componentes principais, de modo a facilitar a manutenção e o desenvolvimento colaborativo. Esta arquitetura, complementada por camadas de serviço e repositório, assegura a organização do código e a flexibilidade para futuras alterações (BARBOSA, 2021).
 
 * **Camadas da Arquitetura:**
@@ -80,9 +79,9 @@ Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seg
     * **Model:** 
      Representa a estrutura de dados e as entidades do sistema. Os Models definem os campos e relacionamentos, garantindo a integridade e a consistência dos dados em todas as camadas.
 
-## 2.3. Protótipo de Alta Fidelidade
+## 2.3. Protótipo de Alta Fidelidade {#protótipo-de-alta-fidelidade}
 
-## 2.4. Modelagem de Banco de Dados
+## 2.4. Modelagem de Banco de Dados {#modelagem-de-banco-de-dados}
 Esta subseção (2.4) descreve a estrutura do banco de dados do NexPeer, projetada para ser a base robusta e escalável da nossa plataforma. A modelagem foi pensada para garantir a integridade dos dados e a eficiência nas operações financeiras, além de facilitar a rastreabilidade e a auditoria de todas as transações. Adotamos um modelo relacional que organiza as informações de forma lógica e interconectada, permitindo que a aplicação funcione de maneira fluida e segura.
 
 ### 2.4.1. Modelo Relacional
@@ -245,7 +244,7 @@ Para garantir a conformidade e a segurança, a tabela `contratos_ccb` armazena o
 
 ### 2.4.2. Consultas SQL
 
-## 2.5. WebAPI e Endpoints
+## 2.5. WebAPI e Endpoints {#webapi-e-endpoints}
 Esta subseção (2.5) mostra como a aplicação se conecta à WebAPI e aos serviços externos que sustentam o funcionamento da aplicação, incluindo a comunicação com a blockchain. O objetivo é explicar de forma clara como os endpoints disponibilizam funcionalidades essenciais, como cadastro de usuários, solicitação de empréstimos, investimentos e execução de contratos financeiros peer-to-peer (P2P).
 
 A integração com a blockchain, através de smart contracts, garante que os contratos sejam registrados de forma imutável e auditável, oferecendo segurança jurídica e transparência nas transações. Nesta subseção, apresentamos o contrato principal utilizado no MVP e mostramos como ele se conecta à aplicação.
@@ -325,7 +324,7 @@ Outro ponto importante é a segurança jurídica: ao registrar os contratos na b
 
 A integração do NexPeer com a blockchain, através de smart contracts como o `SimpleP2PLoan`, representa um passo fundamental para combinar tecnologia financeira de ponta com segurança, transparência e confiabilidade. Essa abordagem assegura que todas as operações P2P sejam rastreáveis, automatizadas e auditáveis, oferecendo uma experiência segura tanto para tomadores quanto para investidores, alinhada aos padrões do mercado financeiro digital.
 
-## Referências
+## Referências {#referencias}
 
 BARBOSA, Tadeu. Movendo a lógica de sua aplicação para Services e Repositories. DEV Community, 1 ago. 2021. Disponível em: https://dev.to/tadeubdev/movendo-a-logica-de-sua-aplicacao-para-services-e-repositories-4lee
 .Acesso em: 29 set. 2025.
