@@ -51,32 +51,131 @@ O objetivo desta parte da documentação é oferecer uma visão abrangente do pr
 
 </div>
 
-## 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
-Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços escolhidos para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
+# 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
 
-- **Aplicação Web (Full-Stack): Next.js 14+ (com React):** Escolhemos Next.js por ser um framework full-stack robusto que nos permite construir tanto a interface do usuário (com React) quanto a nossa API de backend no mesmo projeto. Essa abordagem monolítica simplifica o desenvolvimento e o deploy, eliminando a necessidade de gerenciar repositórios e infraestruturas separadas. Utilizamos o App Router, que otimiza a performance com Server Components por padrão e nos dá um controle granular sobre a renderização no cliente. Para garantir a segurança e a qualidade do código em uma aplicação financeira complexa, adotamos o TypeScript, que nos fornece tipagem estática para prevenir bugs, facilitar a manutenção e habilitar um autocompletar inteligente em todo o projeto.
-- **Banco de Dados:** 
-PostgreSQL, hospedado no Supabase: por oferecer suporte a queries complexas, boa performance e integração facilitada com serviços modernos de backend-as-a-service.
-- **Interação com o Banco de Dados: Prisma ORM**
-O Prisma atua como a nossa camada de acesso a dados (Model), permitindo-nos escrever consultas ao banco de dados de forma segura e em TypeScript, o que acelera o desenvolvimento e previne erros.
+Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços que serão utilizados para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
+
+- **Aplicação Web (Full-Stack): Next.js 14+ com React 19:** Será utilizado Next.js 14 com App Router por ser um framework full-stack moderno que permitirá construir tanto a interface do usuário (com React 19) quanto a API de backend no mesmo projeto. O App Router oferece Server Components por padrão, otimizando a performance e permitindo renderização híbrida (server/client). O roteamento baseado em pastas otimizará a performance com Server Components por padrão e dará controle granular sobre a renderização no cliente. Para garantir a segurança e a qualidade do código em uma aplicação financeira complexa, será adotado o TypeScript 5, que fornecerá tipagem estática para prevenir bugs, facilitar a manutenção e habilitar autocompletar inteligente em todo o projeto.
+
+- **Banco de Dados:** PostgreSQL hospedado no Supabase, configurado via Prisma ORM para oferecer suporte a queries complexas, relacionamentos avançados e integridade referencial. O banco será estruturado com schema complexo incluindo entidades como Usuario, Emprestimo, Investimento, ContratoCcb, Parcela, Repasse, Notificacao e logs de auditoria. O Supabase fornecerá autenticação, real-time subscriptions e APIs REST automáticas.
+
+- **Interação com o Banco de Dados: Prisma ORM 6.16+ com Supabase**
+O Prisma atuará como a camada de acesso a dados (Model), permitindo escrever consultas ao banco de dados de forma segura e em TypeScript, o que acelerará o desenvolvimento e prevenirá erros. O schema incluirá relacionamentos complexos, enums para status e tipos, e campos de auditoria (criadoEm, atualizadoEm). O Supabase fornecerá funcionalidades adicionais como autenticação integrada, real-time subscriptions e APIs REST automáticas.
+
+- **Interface de Usuário:**
+  - **Tailwind CSS 3.4+:** Framework CSS utilitário para estilização responsiva e mobile-first
+  - **Radix UI:** Biblioteca de componentes acessíveis e customizáveis para elementos complexos como modais, dropdowns, selects, etc.
+  - **Lucide React:** Biblioteca de ícones moderna e consistente
+  - **Componentes Customizados:** Sistema de design próprio baseado em shadcn/ui
+
+- **Validação e Formulários:**
+  - **React Hook Form 7.60+:** Gerenciamento de formulários com validação
+  - **Zod 3.25+:** Validação de schemas em TypeScript
+  - **@hookform/resolvers:** Integração entre React Hook Form e Zod
+
+- **Blockchain e Contratos (MVP):**
+  - **Hash de Contratos:** Geração de hash para contratos assinados
+  - **Armazenamento Local:** Contratos salvos localmente com hash
+  - **Integração Futura:** Preparação para blockchain (não implementado no MVP)
+
+- **Verificação de Identidade e KYC (MVP):**
+  - **Upload de Documentos:** Captura de RG/CNH via câmera
+  - **Upload de Selfie:** Captura de foto para verificação
+  - **Validação Básica:** Verificação de campos obrigatórios
+  - **Status KYC:** Controle de aprovação/rejeição manual
+
 - **Ferramentas de Apoio:** 
-   - Git e GitHub para versionamento e colaboração em equipe 
-   - Figma para prototipagem e design de interfaces.
+  - Git e GitHub para versionamento e colaboração em equipe 
+  - Figma para prototipagem e design de interfaces
+  - ESLint e Prettier para qualidade e formatação de código
+  - PostCSS e Autoprefixer para processamento CSS
 
 ## 2.2. Arquitetura {#arquitetura} 
-Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seguindo o padrão **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso desse padrão permite separar as responsabilidades do sistema em três componentes principais, de modo a facilitar a manutenção e o desenvolvimento colaborativo. Esta arquitetura, complementada por camadas de serviço e repositório, assegura a organização do código e a flexibilidade para futuras alterações (BARBOSA, 2021).
+
+Esta subseção (2.2) detalha a arquitetura do NexPeer, que será desenvolvida seguindo o padrão **Next.js App Router** com elementos de **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso do App Router permitirá uma arquitetura híbrida que combina Server Components, Client Components e API Routes, facilitando a manutenção e o desenvolvimento colaborativo.
 
 * **Camadas da Arquitetura:**
-    * **View (Front-end):** 
-     Desenvolvida em React, esta camada é a interface com a qual o usuário interage diretamente. Ela exibe os dados e captura as ações do usuário, como cliques e preenchimento de formulários, enviando-os para o Controller. A View é a camada de apresentação, focada na experiência do usuário (UX/UI).
-    * **Controller:** 
-     Responsável por receber as requisições da View, ele atua como intermediário, validando os dados e coordenando as operações entre a View e o Service. O Controller não contém a lógica de negócios, apenas direciona as chamadas para a camada de Service apropriada. Implementado com as Next.js API Routes dentro da pasta src/app/api/. Atua como o intermediário: recebe as requisições da View, valida os dados e chama a camada de Serviço (Model) para executar a lógica de negócio.
-    * **Service:** 
-     Esta camada é o responsável pela lógica de negócios da aplicação. Ela agrupa as regras de negócio complexas, como validações de transações, cálculos de saldo e verificação de segurança (antifraude). O Service utiliza o Repository para acessar e manipular os dados, garantindo que a lógica de negócios esteja separada do banco de dados.
-    * **Repository:** 
-      O Repository é a camada que conversa diretamente com o banco de dados. Ele interage diretamente com o banco de dados PostgreSQL, contendo as consultas SQL e as operações de CRUD (Create, Read, Update, Delete). A grande vantagem é que ele serve como uma ponte clara para a camada de Service, isolando a lógica de negócios de como e onde os dados estão guardados.
-    * **Model:** 
-     Representa a estrutura de dados e as entidades do sistema. Os Models definem os campos e relacionamentos, garantindo a integridade e a consistência dos dados em todas as camadas.
+
+    * **View (Front-end - Client Components):** 
+     Será desenvolvida em React 19 com Next.js App Router, esta camada utilizará Client Components para interatividade do usuário. Será localizada em `src/app/` (páginas) e `src/components/` (componentes reutilizáveis), onde exibirá os dados e capturará as ações do usuário, como cliques e preenchimento de formulários, enviando-os para as API Routes. A View será a camada de apresentação, focada na experiência do usuário (UX/UI) com design responsivo mobile-first.
+
+    * **Server Components (Renderização no Servidor):** 
+     Componentes React que serão renderizados no servidor, otimizando a performance e SEO. Serão utilizados para páginas estáticas e conteúdo que não requer interatividade imediata.
+
+    * **API Routes (Controller):** 
+     Serão implementadas em `src/app/api/` seguindo o padrão REST, atuando como intermediários entre a View e os Services. Receberão requisições HTTP, validarão dados e coordenarão operações entre a View e a camada de Service. Não conterão lógica de negócios, apenas direcionarão as chamadas para a camada de Service apropriada.
+
+    * **Controllers (Lógica de Coordenação):** 
+     Serão localizados em `src/controllers/`, contendo a lógica de coordenação entre a View e os Services. Exemplos: AuthController, LoanController, InvestmentController. Atuarão como intermediários entre as API Routes e os Services.
+
+    * **Service (Lógica de Negócios):** 
+     Esta camada, localizada em `src/services/`, será responsável pela lógica de negócios da aplicação. Agrupará as regras de negócio complexas, como validações de transações, cálculos de saldo, verificação de segurança (antifraude) e integração com Open Finance. O Service utilizará o Prisma Client para acessar e manipular os dados, garantindo que a lógica de negócios esteja separada do banco de dados.
+
+    * **Model (Estrutura de Dados):** 
+     Representará a estrutura de dados e as entidades do sistema através do Prisma Schema (`prisma/schema.prisma`) e TypeScript types (`src/types/`). Os Models definirão os campos, relacionamentos e validações, garantindo a integridade e a consistência dos dados em todas as camadas. Incluirá entidades como Usuario, Emprestimo, Investimento, ContratoCcb, Parcela, Repasse, Notificacao.
+
+    * **Database Layer (Prisma + Supabase):** 
+     Camada de acesso a dados implementada via Prisma Client (`src/lib/database.ts`) conectada ao Supabase. Fornecerá uma interface type-safe para interação com PostgreSQL, incluindo queries, mutations, relacionamentos e transações. O Supabase adicionará funcionalidades de autenticação, real-time e APIs REST automáticas.
+
+    * **Blockchain Layer (MVP - Hash Local):** 
+     Camada simplificada para MVP que será responsável por gerar hashes de contratos assinados e armazená-los localmente. Preparará a estrutura para futura integração com blockchain, mas no MVP focará em hash de segurança e armazenamento local.
+
+* **Estrutura de Pastas Planejada:**
+```
+src/
+├── app/                    # Next.js App Router (páginas e API routes)
+│   ├── api/               # API Routes (Controllers)
+│   ├── (pages)/           # Páginas da aplicação
+│   └── globals.css        # Estilos globais
+├── components/            # Componentes reutilizáveis
+│   └── ui/               # Componentes base (shadcn/ui)
+├── controllers/          # Lógica de coordenação
+├── services/            # Lógica de negócios
+├── models/              # Modelos de dados (TypeScript)
+├── types/               # Definições de tipos
+├── lib/                 # Utilitários e configurações
+│   ├── database.ts       # Prisma Client
+│   ├── web3.ts          # Configuração blockchain
+│   └── kyc.ts           # Configuração KYC
+├── hooks/               # Custom React hooks
+├── views/               # Componentes de view específicos
+└── kyc/                 # Verificação de identidade (MVP)
+    ├── components/      # Componentes de upload
+    ├── utils/          # Utilitários básicos
+    └── types/          # Tipos KYC
+```
+
+* **Padrões de Desenvolvimento a Serem Implementados:**
+    * **Server-First:** Uso de Server Components por padrão
+    * **Client Components:** Apenas quando necessário para interatividade
+    * **Type Safety:** TypeScript em toda a aplicação
+    * **Component Composition:** Componentes pequenos e reutilizáveis
+    * **API-First:** API Routes bem estruturadas e documentadas
+    * **Mobile-First:** Design responsivo com Tailwind CSS
+
+* **Segurança e Compliance a Serem Implementados:**
+    * **Validação de Dados:** Zod schemas para validação
+    * **Autenticação:** JWT tokens com bcryptjs
+    * **Auditoria:** Logs de ações em `LogAcao`
+    * **KYC:** Verificação de identidade com status tracking
+    * **Open Finance:** Integração segura com bancos
+    * **LGPD:** Conformidade com proteção de dados
+    * **KYC Básico:** Upload e validação manual de documentos
+    * **Hash de Segurança:** Geração de hash para contratos
+    * **Data Privacy:** Criptografia básica de dados sensíveis
+
+* **Performance e Escalabilidade Planejadas:**
+    * **Server Components:** Renderização otimizada no servidor
+    * **Code Splitting:** Divisão automática de código por rota
+    * **Image Optimization:** Next.js Image component
+    * **Caching:** Estratégias de cache do Next.js
+    * **Database Optimization:** Queries otimizadas com Prisma
+    * **Upload Otimizado:** Compressão de imagens para upload
+    * **Validação Rápida:** Verificação básica de campos obrigatórios
+    * **Interface Responsiva:** Design mobile-first para captura de documentos
+
+Esta arquitetura moderna combinará as melhores práticas do Next.js 14 com padrões estabelecidos, garantindo uma base sólida para crescimento e manutenção da plataforma NexPeer.
+
 
 ## 2.3. Protótipo de Alta Fidelidade {#protótipo-de-alta-fidelidade}
 
