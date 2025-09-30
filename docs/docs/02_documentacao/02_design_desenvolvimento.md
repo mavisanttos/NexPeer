@@ -54,12 +54,11 @@ O objetivo desta parte da documentação é oferecer uma visão abrangente do pr
 ## 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
 Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços escolhidos para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
 
-- **Front-end (Mobile App):** 
-React: escolhido por sua robustez e ampla comunidade, além de possibilitar desenvolvimento multiplataforma com alto desempenho.
-- **Back-end (API e lógica de negócios):**
-Desenvolvido em JavaScript com Node.js e Express.js, estruturado no modelo RESTful. Essa escolha garante rapidez no desenvolvimento, ampla documentação e facilidade de integração com serviços externos, além de boa compatibilidade com o PostgreSQL (via Supabase). O backend é responsável por autenticação, gerenciamento de usuários, processamento de transações P2P e comunicação segura entre cliente e servidor.
+- **Aplicação Web (Full-Stack): Next.js 14+ (com React):** Escolhemos Next.js por ser um framework full-stack robusto que nos permite construir tanto a interface do usuário (com React) quanto a nossa API de backend no mesmo projeto. Essa abordagem monolítica simplifica o desenvolvimento e o deploy, eliminando a necessidade de gerenciar repositórios e infraestruturas separadas. Utilizamos o App Router, que otimiza a performance com Server Components por padrão e nos dá um controle granular sobre a renderização no cliente. Para garantir a segurança e a qualidade do código em uma aplicação financeira complexa, adotamos o TypeScript, que nos fornece tipagem estática para prevenir bugs, facilitar a manutenção e habilitar um autocompletar inteligente em todo o projeto.
 - **Banco de Dados:** 
 PostgreSQL, hospedado no Supabase: por oferecer suporte a queries complexas, boa performance e integração facilitada com serviços modernos de backend-as-a-service.
+- **Interação com o Banco de Dados: Prisma ORM**
+O Prisma atua como a nossa camada de acesso a dados (Model), permitindo-nos escrever consultas ao banco de dados de forma segura e em TypeScript, o que acelera o desenvolvimento e previne erros.
 - **Ferramentas de Apoio:** 
    - Git e GitHub para versionamento e colaboração em equipe 
    - Figma para prototipagem e design de interfaces.
@@ -71,7 +70,7 @@ Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seg
     * **View (Front-end):** 
      Desenvolvida em React, esta camada é a interface com a qual o usuário interage diretamente. Ela exibe os dados e captura as ações do usuário, como cliques e preenchimento de formulários, enviando-os para o Controller. A View é a camada de apresentação, focada na experiência do usuário (UX/UI).
     * **Controller:** 
-     Responsável por receber as requisições da View, ele atua como intermediário, validando os dados e coordenando as operações entre a View e o Service. O Controller não contém a lógica de negócios, apenas direciona as chamadas para a camada de Service apropriada.
+     Responsável por receber as requisições da View, ele atua como intermediário, validando os dados e coordenando as operações entre a View e o Service. O Controller não contém a lógica de negócios, apenas direciona as chamadas para a camada de Service apropriada. Implementado com as Next.js API Routes dentro da pasta src/app/api/. Atua como o intermediário: recebe as requisições da View, valida os dados e chama a camada de Serviço (Model) para executar a lógica de negócio.
     * **Service:** 
      Esta camada é o responsável pela lógica de negócios da aplicação. Ela agrupa as regras de negócio complexas, como validações de transações, cálculos de saldo e verificação de segurança (antifraude). O Service utiliza o Repository para acessar e manipular os dados, garantindo que a lógica de negócios esteja separada do banco de dados.
     * **Repository:** 
