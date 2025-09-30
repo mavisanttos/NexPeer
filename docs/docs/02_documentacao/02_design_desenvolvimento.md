@@ -102,7 +102,7 @@ Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seg
 
 🔴 Setas Vermelhas: Representam uma ação de retroceder ou voltar. Elas indicam que o usuário está retornando a uma tela anterior no fluxo.
 
-### 2.3.2. Fluxo Comum de Entrada e Autenticação
+### 2.3.2. Fluxo do Usuário
 
 #### A. Tela Inicial (Splash Screen) e Tela de Login
 
