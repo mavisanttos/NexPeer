@@ -180,6 +180,157 @@ Esta arquitetura moderna combinará as melhores práticas do Next.js 14 com padr
 
 ## 2.3. Protótipo de Alta Fidelidade {#protótipo-de-alta-fidelidade}
 
+&emsp; O protótipo de alta fidelidade, serve como a representação visual e interativa de todo o fluxo de navegação da aplicação NexPeer. Ele é a ponte entre o design conceitual e a experiência final do usuário. Para facilitar a interpretação dos diferentes caminhos e jornadas do usuário, foi implementado um sistema de cores nas setas de navegação do diagrama. Esta legenda de cores é fundamental para compreender rapidamente a função de cada transição de tela.
+
+&emsp; Para uma visualização interativa e completa do protótipo de alta fidelidade, acesse o link do Figma abaixo. Recomenda-se consultar a Legenda de Cores, também presente neste documento, para facilitar a compreensão das conexões e dos diferentes caminhos de usuário no diagrama visual.
+
+[Link do Protótipo no Figma](https://www.figma.com/board/7ASI8taEkEwmJvtF7QLbkU/NexPeer?node-id=0-1&t=GlqDSSVRZ9TgPvb7-1)
+
+### 2.3.1. Legenda de Cores para Navegação
+
+&emsp; As cores das setas no diagrama de fluxo representam diferentes tipos de ações e jornadas do usuário, conforme detalhado abaixo:
+
+🔵 Setas Azuis: Representam o fluxo comum, percorrido por todos os usuários durante as etapas iniciais da aplicação, como a tela de Splash e a de Login.
+
+🟢 Setas Verdes: Identificam o fluxo do Tomador. Elas indicam a jornada específica do usuário que está solicitando um empréstimo.
+
+🌐 Setas Ciano: Identificam o fluxo do Investidor. Elas guiam o caminho exclusivo do usuário que deseja investir na plataforma.
+
+🟡 Setas Amarelas: Direcionam para o fluxo de criação de conta. Embora seja um fluxo comum, esta cor o diferencia da navegação inicial.
+
+🟣 Setas Roxas: Indicam o fluxo de recuperação de senha, uma ação específica acionada a partir da tela de Login.
+
+🔴 Setas Vermelhas: Representam uma ação de retroceder ou voltar. Elas indicam que o usuário está retornando a uma tela anterior no fluxo.
+
+### 2.3.2. Fluxo do Usuário
+
+#### A. Tela Inicial (Splash Screen) e Tela de Login
+
+1. A Tela Incial é o ponto de entrada. Ela apresenta a marca e possui um único botão de ação, "Iniciar".
+
+2. Seguindo a seta azul (fluxo comum), a ação de clicar em "Iniciar" leva o usuário para a Tela de Login.
+
+3. A Tela de Login funciona como um hub central de autenticação, de onde partem múltiplos caminhos, identificados pelas setas coloridas:
+  - Ao preencher os dados e clicar em "Entrar", o usuário seguirá o fluxo de Tomador (seta verde) ou Investidor (seta ciano), dependendo do seu perfil.
+  - Clicando em "Crie aqui", o usuário inicia o fluxo de Cadastro de nova conta (seta amarela).
+  - Clicando em "Esqueci minha senha?", o usuário é direcionado para o fluxo de Recuperação de Senha (seta roxa).
+
+#### B. Recuperação de Senha
+
+1. A partir da Tela de Login, ao clicar no link "Esqueci minha senha?", o usuário inicia este fluxo, seguindo a seta roxa.
+
+2. A primeira tela (Formulário de Recuperação) solicita que o usuário digite seu email e clique no botão "Enviar instruções".
+
+3. Após o clique, a seta roxa indica a transição para a segunda tela (Confirmação), que exibe a mensagem de sucesso "Email enviado!".
+
+3. Na tela de Confirmação, a ação principal é clicar no botão "Voltar ao login". A seta vermelha partindo deste botão mostra que a ação redireciona o usuário de volta para a Tela de Login
+
+4. Como caminho alternativo, em qualquer uma das etapas, o usuário pode clicar no link "Fazer login". A seta vermelha indica que esta ação também o leva de volta para a Tela de Login, cancelando o processo de recuperação.
+
+#### C. Fluxo de Cadastro e Verificação de Identidade
+
+1. O fluxo é iniciado a partir da Tela de Login ao clicar em "Crie aqui". Na Tela de Cadastro, o usuário preenche o formulário com suas informações pessoais e clica em "Continuar".
+
+2. Seguindo a seta amarela, após o cadastro, o usuário é direcionado para a Tela de Escolha de Perfil
+
+3. Nesta etapa, o usuário define seu objetivo na plataforma, escolhendo uma das duas opções:
+
+- "Preciso de um empréstimo" (Tomador)
+
+- "Quero investir" (Investidor)
+
+4. A partir da escolha, o fluxo avança para a Tela de Verificação de Identidade. A cor da seta indica o perfil que foi selecionado no passo anterior:
+
+- A seta verde representa a jornada do Tomador.
+
+- A seta ciano representa a jornada do Investidor.
+
+5. Na Tela de Verificação, o usuário confirma seus dados e realiza duas etapas de segurança: o escaneamento de um documento de identidade e a verificação facial (KYC).
+
+6. Após concluir a verificação com sucesso, o fluxo se divide novamente, com as setas verde (Tomador) e ciano (Investidor) apontando para a próxima etapa específica de cada perfil.
+
+7. Como caminho alternativo, nas telas de Cadastro e Escolha de Perfil, o link "Faça login" (seta vermelha) permite ao usuário abandonar o processo e retornar para a Tela de Login.
+
+#### D. Fluxo de Configuração do Investidor
+
+1. Após a conclusão da Verificação de Identidade (KYC), o usuário com perfil de Investidor é direcionado pela seta ciano para a primeira tela de configuração: Dados Financeiros do Investidor.
+
+2. Nesta tela, o usuário preenche suas informações financeiras (renda, gastos, etc.) e clica no botão "Continuar para Questionário" para prosseguir.
+
+3. O usuário entra na tela Questionário de Perfil de Risco que consiste em um questionário de múltiplas etapas para definir seu perfil de investidor. Ele navega entre as perguntas com os botões "Próxima" e "Anterior". A seta vermelha indica a ação de voltar para a pergunta anterior.
+
+4. Ao responder a última pergunta, o usuário clica em "Finalizar". O sistema processa as respostas e exibe uma tela com o resultado: seu perfil de risco definido (ex: "Perfil Arrojado") e o limite de investimento calculado.
+
+5. Na tela de resultado do perfil, o usuário clica em "Continuar para Open Finance". A seta ciano indica a transição para a tela OpenFinance Investidor.
+
+6. Nesta última etapa, o usuário é apresentado a uma lista de instituições financeiras e pode conectar suas contas bancárias através do fluxo seguro do Open Finance.
+
+7. Após realizar as conexões desejadas, o fluxo continua (indicado pela seta ciano na parte inferior) para o painel principal do investidor, o Dashboard Investidor.
+
+8. A seta vermelha no topo da tela de Open Finance indica que o usuário pode, a qualquer momento, retornar para a tela de resultado do Perfil de Risco.
+
+#### E. Fluxo do Tomador
+
+1. Após a verificação de identidade (KYC), o usuário com perfil de Tomador é direcionado pela seta verde para a Tela Análise de Crédito.
+
+2. Nesta tela, o usuário conecta sua conta bancária através do Open Finance para permitir a análise do seu perfil de crédito. Após selecionar as instituições, ele clica em "Autorizar Conexão Segura".
+
+3. Com a análise concluída, a seta verde indica a transição para a tela principal, o Dashboard Tomador. Esta tela é organizada em uma navegação por abas na parte inferior.
+
+4. A aba inicial padrão é a "Pedir Empréstimo". Aqui, o usuário visualiza seu score de crédito, limite disponível e pode preencher um formulário para solicitar um novo empréstimo.
+
+5. O usuário pode navegar entre as abas para gerenciar suas atividades. As setas verdes ilustram as transições entre elas:
+
+- Aba "Boletos": Exibe as parcelas e faturas em aberto, com a opção de baixar para pagamento.
+
+- Aba "Empréstimos Ativos": Lista os contratos de empréstimo vigentes, mostrando o progresso do pagamento de cada um.
+
+- Aba "Análises": Apresenta gráficos e relatórios sobre a saúde financeira do usuário, como a evolução do seu score e a distribuição de risco.
+
+#### F. Fluxo do Investidor
+
+1. Após finalizar a etapa de configuração (Perfil de Risco e Open Finance), o usuário é direcionado pela seta ciano para a tela principal, o Dashboard Investidor.
+
+2. A aba inicial padrão é a "Oportunidades". Ela exibe um resumo da carteira (saldo, total investido) e uma lista de empréstimos disponíveis para investimento.
+
+3. Ao clicar em uma oportunidade específica na lista, a seta ciano indica que o usuário é levado para uma tela de "Detalhes do Empréstimo". Ali, ele pode analisar todas as informações do tomador e da proposta antes de decidir investir.
+
+4. A seta vermelha mostra que, a partir da tela de detalhes, o usuário pode retornar ao dashboard principal.
+
+5. O usuário pode navegar para outras seções usando a barra de abas inferior. As setas ciano ilustram as transições entre elas:
+
+- Aba "Investimentos": Lista todos os aportes que o usuário já realizou, mostrando o status e o progresso de cada um.
+
+- Aba "Notificações": Apresenta um histórico de alertas importantes, como pagamentos recebidos e novas oportunidades.
+
+- Aba "Análises": Oferece gráficos e relatórios sobre o desempenho e a rentabilidade da carteira de investimentos.
+
+#### G. Tela de Perfil do Usuário
+
+1. A Tela de Perfil é acessível a partir dos dashboards de Tomador e Investidor através de um ícone de usuário.
+
+2. Nela, o usuário pode visualizar e editar suas informações pessoais, endereço e conferir um resumo financeiro da sua conta.
+
+3. A principal ação de navegação é o botão "Sair da Conta". A seta vermelha indica que, ao clicar nele, o usuário encerra sua sessão e é redirecionado para a Tela de Login.
+
+4. A seta vermelha no topo da tela (ícone de voltar) indica a ação de retornar para a tela anterior, que seria o dashboard de origem.
+
+#### H. Tela de Notificações
+
+1. A funcionalidade de Notificações é acessível a partir dos dashboards de Tomador e Investidor, acionada por um ícone de sino na interface.
+
+2. As setas verde (Tomador) e ciano (Investidor) apontando para o ícone de notificações indicam que esta funcionalidade é compartilhada e acessível em ambos os perfis.
+
+3. Ao ser acionada, a tela aparece como uma janela modal sobreposta ao dashboard, permitindo uma consulta rápida sem sair da tela atual.
+
+4. Nesta janela, o usuário visualiza uma lista de todos os alertas e atualizações de sua conta.
+
+5. O usuário pode fechar a janela de notificações clicando no ícone 'X', retornando imediatamente para a visualização do dashboard em que estava.
+
+#### Conclusão
+
+&emsp; A documentação apresentada abrange todos os fluxos de navegação essenciais da aplicação NextPeer, detalhando as jornadas completas dos perfis de Tomador e Investidor, bem como as telas comuns de autenticação, perfil e notificações. Este material serve como uma fonte central de referência para as equipes de design, desenvolvimento e testes, garantindo o alinhamento e a consistência da experiência do usuário ao longo do projeto.
+
 ## 2.4. Modelagem de Banco de Dados {#modelagem-de-banco-de-dados}
 Esta subseção (2.4) descreve a estrutura do banco de dados do NexPeer, projetada para ser a base robusta e escalável da nossa plataforma. A modelagem foi pensada para garantir a integridade dos dados e a eficiência nas operações financeiras, além de facilitar a rastreabilidade e a auditoria de todas as transações. Adotamos um modelo relacional que organiza as informações de forma lógica e interconectada, permitindo que a aplicação funcione de maneira fluida e segura.
 
