@@ -84,7 +84,7 @@ Esta subseção (2.2) detalha a arquitetura do NexPeer, que foi desenvolvida seg
 
 &emsp; Para uma visualização interativa e completa do protótipo de alta fidelidade, acesse o link do Figma abaixo. Recomenda-se consultar a Legenda de Cores, também presente neste documento, para facilitar a compreensão das conexões e dos diferentes caminhos de usuário no diagrama visual.
 
-Link do Protótipo no Figma
+[Link do Protótipo no Figma](https://www.figma.com/board/7ASI8taEkEwmJvtF7QLbkU/NexPeer?node-id=0-1&t=GlqDSSVRZ9TgPvb7-1)
 
 ### 2.3.1. Legenda de Cores para Navegação
 
@@ -226,6 +226,10 @@ Link do Protótipo no Figma
 4. Nesta janela, o usuário visualiza uma lista de todos os alertas e atualizações de sua conta.
 
 5. O usuário pode fechar a janela de notificações clicando no ícone 'X', retornando imediatamente para a visualização do dashboard em que estava.
+
+#### Conclusão
+
+&emsp; A documentação apresentada abrange todos os fluxos de navegação essenciais da aplicação NextPeer, detalhando as jornadas completas dos perfis de Tomador e Investidor, bem como as telas comuns de autenticação, perfil e notificações. Este material serve como uma fonte central de referência para as equipes de design, desenvolvimento e testes, garantindo o alinhamento e a consistência da experiência do usuário ao longo do projeto.
 
 ## 2.4. Modelagem de Banco de Dados {#modelagem-de-banco-de-dados}
 Esta subseção (2.4) descreve a estrutura do banco de dados do NexPeer, projetada para ser a base robusta e escalável da nossa plataforma. A modelagem foi pensada para garantir a integridade dos dados e a eficiência nas operações financeiras, além de facilitar a rastreabilidade e a auditoria de todas as transações. Adotamos um modelo relacional que organiza as informações de forma lógica e interconectada, permitindo que a aplicação funcione de maneira fluida e segura.
