@@ -5,10 +5,12 @@ title: Conclusão
 
 # 3. Conclusão
 
+Falar sobre sintese geral do projeto, passos futuros
+
 ## 3.1 Síntese do Trabalho
 - Resumo dos objetivos do projeto.
 - Principais resultados alcançados.
-- Destaque das contribuições mais relevantes.
+
 
 ## 3.2 Lições Aprendidas / Desafios
 - Pontos fortes e limitações do projeto.
@@ -23,5 +25,3 @@ title: Conclusão
 ## 3.4 Considerações Finais
 - Reflexão geral sobre o impacto do projeto.
 - Mensagem de encerramento reforçando a relevância do trabalho.
-
-

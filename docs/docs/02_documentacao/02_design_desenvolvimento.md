@@ -90,6 +90,7 @@ O Prisma atuará como a camada de acesso a dados (Model), permitindo escrever co
   - ESLint e Prettier para qualidade e formatação de código
   - PostCSS e Autoprefixer para processamento CSS
 
+
 ## 2.2. Arquitetura {#arquitetura} 
 
 Esta subseção (2.2) detalha a arquitetura do NexPeer, que será desenvolvida seguindo o padrão **Next.js App Router** com elementos de **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso do App Router permitirá uma arquitetura híbrida que combina Server Components, Client Components e API Routes, facilitando a manutenção e o desenvolvimento colaborativo.
@@ -421,3 +422,81 @@ Além disso, a blockchain permite a automação de processos críticos por meio 
 Outro ponto importante é a segurança jurídica: ao registrar os contratos na blockchain, o NexPeer garante um histórico verificável das transações, o que fortalece a conformidade regulatória e a proteção dos participantes da plataforma (THE COMPLIANCE DIGEST, 2024). 
 
 A integração do NexPeer com a blockchain, através de smart contracts como o `SimpleP2PLoan`, representa um passo fundamental para combinar tecnologia financeira de ponta com segurança, transparência e confiabilidade. Essa abordagem assegura que todas as operações P2P sejam rastreáveis, automatizadas e auditáveis, oferecendo uma experiência segura tanto para tomadores quanto para investidores, alinhada aos padrões do mercado financeiro digital.
+
+### 2.6 Plano de Implementação de Segurança 
+
+A segurança numa aplicação financeira como o NextPeer é a prioridade máxima. Aqui está detalhado as medidas essenciais que implementaremos em cada camada da nossa arquitetura para garantir a integridade, a confidencialidade e a disponibilidade dos dados dos nossos utilizadores.
+
+##### 1. Autenticação e Gestão de Sessão**
+O objetivo é garantir que apenas utilizadores legítimos possam aceder às suas contas e que as suas sessões permaneçam seguras.
+
+**1.1. Armazenamento Seguro de Senhas**
+
+O que é: Nunca armazenar senhas em texto puro na base de dados.
+
+Porque é importante: Se a base de dados for comprometida, os invasores não terão acesso direto às senhas dos utilizadores.
+
+Como vamos implementar:
+
+Na API de registo (/api/auth/register), usaremos a biblioteca bcryptjs para criar um "hash" da senha do utilizador antes de a salvar no campo senha_hash da tabela usuarios.
+
+Na API de login (/api/auth/login), compararemos o hash da senha fornecida com o hash armazenado na base de dados usando a função bcrypt.compare().
+
+**1.2. Gestão de Sessões com Tokens Seguros**
+
+O que é: Após o login, o servidor gera um "token" (um passe de acesso) que o frontend usa para provar que está autenticado em requisições futuras.
+
+Porque é importante: Evita que o utilizador precise de enviar o e-mail e a senha a cada ação que realiza na plataforma.
+
+Como vamos implementar:
+
+Usaremos JSON Web Tokens (JWT). Após um login bem-sucedido, a API de login criará um JWT contendo o id do utilizador e uma data de expiração.
+
+Este token será enviado ao frontend dentro de um cookie httpOnly e secure. Isto impede que o token seja roubado por scripts maliciosos (ataques XSS) e garante que ele só seja enviado através de ligações seguras (HTTPS).
+
+**1.3. Proteção de Rotas (Frontend e Backend)**
+
+O que é: Impedir que utilizadores não autenticados acedam a páginas e APIs protegidas.
+
+Porque é importante: Garante que apenas utilizadores logados possam ver dashboards, perfis e outras informações sensíveis.
+
+Como vamos implementar:
+
+Usaremos Middleware no Next.js. Criaremos um middleware.ts na raiz do projeto que verificará a presença e a validade do token JWT em cada requisição. Se o token for inválido ou inexistente, o utilizador será redirecionado para a página de login.
+
+##### 2. Autorização e Controlo de Acesso
+O objetivo é garantir que um utilizador logado só possa ver e fazer o que tem permissão.
+
+**2.1. Controlo de Acesso Baseado em Perfil**
+
+O que é: Garantir que um "tomador" não possa aceder a funcionalidades exclusivas de um "investidor", e vice-versa.
+
+Porque é importante: Previne que um tipo de utilizador explore funcionalidades do outro.
+
+Como vamos implementar:
+
+O token JWT que geramos no login também conterá o tipo_perfil do utilizador.
+
+Em cada endpoint da API (ex: /api/investor/...), o nosso Controller verificará se o tipo_perfil no token é 'investidor'. Se não for, a API retornará um erro "403 Proibido".
+
+**2.2. Verificação de Propriedade de Dados**
+
+O que é: A medida de segurança mais crítica. Garante que o Utilizador A nunca possa ver os dados do Utilizador B.
+
+Porque é importante: Previne que um utilizador possa, por exemplo, alterar o URL (/emprestimos/123 para /emprestimos/456) e ver os detalhes do empréstimo de outra pessoa.
+
+Como vamos implementar:
+
+Em todas as nossas consultas à base de dados, sempre incluiremos uma cláusula where que filtra pelo ID do utilizador logado.
+
+```
+Exemplo (Prisma): Para procurar um empréstimo, em vez de prisma.emprestimos.findUnique({ where: { id: loanId } }), faremos:
+
+const userId = getUserIdFromToken(request); // Função para extrair o ID do utilizador do token
+const emprestimo = await prisma.emprestimos.findFirst({
+  where: {
+    id: loanId,
+    tomador_id: userId // GARANTE QUE O EMPRÉSTIMO PERTENÇA AO UTILIZADOR LOGADO
+  }
+});
+```
