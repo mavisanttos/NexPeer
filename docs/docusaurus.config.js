@@ -4,13 +4,12 @@ import {themes as prismThemes} from 'prism-react-renderer';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'NEXPEER',
-  tagline: 'Dinosaurs are cool',
   favicon: 'img/nexpeer-icon.ico',
 
-  url: 'https://inteliprojects.github.io', // Atualize conforme sua organização
+  url: 'https://mavisanttos.github.io', // Atualize conforme sua organização
   baseUrl: '/NexPeer/',
 
-  organizationName: 'InteliProjects', // Atualize conforme sua organização
+  organizationName: 'mavisanttos', // Atualize conforme sua organização
   projectName: 'NexPeer',
 
   onBrokenLinks: 'throw',
