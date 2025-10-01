@@ -4,7 +4,7 @@ title: Referências
 ---
 
 # 4. Referências
-Nesta seção (4), são apresentadas as fontes utilizadas ao longo deste trabalho, incluindo artigos, relatórios e materiais acadêmicos, que fundamentam a análise e as discussões apresentadas.
+&emsp; Nesta seção (4), são apresentadas as fontes utilizadas ao longo deste trabalho, incluindo artigos, relatórios e materiais acadêmicos, que fundamentam a análise e as discussões apresentadas.
 
 BARBOSA, Tadeu. Movendo a lógica de sua aplicação para Services e Repositories. DEV Community, 1 ago. 2021. Disponível em: https://dev.to/tadeubdev/movendo-a-logica-de-sua-aplicacao-para-services-e-repositories-4lee
 .Acesso em: 29 set. 2025.
