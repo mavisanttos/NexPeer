@@ -1,6 +1,8 @@
 ---
-id: conclusao
+id: Conclusão
 title: Conclusão
+description: Resumo dos aprendizados, resultados e próximos passos do projeto.
+
 ---
 
 # 3. Conclusão

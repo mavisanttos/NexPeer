@@ -4,7 +4,13 @@ Repositório do projeto **NexPeer**, plataforma de transações financeiras peer
 Este repositório contém tanto o código do projeto quanto a documentação técnica do sistema.
 
 ---
+## Clonando o Repositório
 
+```bash
+git clone https://github.com/mavisanttos/inovacamp_qi_tech
+cd inovacamp_qi_tech
+```
+---
 ## Estrutura do Repositório
 
 - `docs/` - Documentação do projeto, desenvolvida com **Docusaurus**.

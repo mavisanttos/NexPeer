@@ -1,6 +1,7 @@
 ---
 id: referencias
 title: Referências
+description: Lista das fontes e materiais utilizados na construção do projeto.
 ---
 
 # 4. Referências
