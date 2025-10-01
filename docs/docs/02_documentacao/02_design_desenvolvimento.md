@@ -52,7 +52,7 @@ description: Descrição das decisões de design, arquitetura e implementação.
 
 </div>
 
-# 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
+## 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
 
 &emsp; Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços que serão utilizados para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
 
@@ -355,7 +355,7 @@ src/
 
 &emsp; A integração com a blockchain, através de smart contracts, garante que os contratos sejam registrados de forma imutável e auditável, oferecendo segurança jurídica e transparência nas transações. Nesta subseção, apresentamos o contrato principal utilizado no MVP e mostramos como ele se conecta à aplicação.
 
-## 2.5.1 Integração com Smart Contract
+### 2.5.1 Integração com Smart Contract
 
 &emsp; O contrato principal do MVP é o `SimpleP2PLoan`, que gerencia empréstimos entre tomadores e investidores, controlando valores, taxas, prazos e pagamentos. A seguir, é detalhado o funcionamento do contrato.
 
