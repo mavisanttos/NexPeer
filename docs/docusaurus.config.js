@@ -66,18 +66,9 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'documentacao',
-                to: '/',
-              },
-            ],
-          },
           // Resto do footer continua igual
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} NexPeer, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
