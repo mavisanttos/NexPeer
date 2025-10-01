@@ -1,6 +1,7 @@
 ---
 id: escopo_projeto
 title: Escopo do Projeto
+description: Definição clara e estruturada dos objetivos, metas e limites do projeto.
 ---
 
 # 1. Escopo do Projeto

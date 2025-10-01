@@ -1,6 +1,8 @@
 ---
-id: conclusao
+id: Conclusão
 title: Conclusão
+description: Resumo dos aprendizados, resultados e próximos passos do projeto.
+
 ---
 
 # 3. Conclusão
@@ -28,9 +30,9 @@ title: Conclusão
 ## 3.3 Próximos Passos
 
 &emsp; A plataforma pode ser expandida em diferentes frentes:
-- **Funcionalidades adicionais:** análise de risco mais sofisticada com uso de inteligência artificial, 
-- **Melhorias na experiência do usuário:** aperfeiçoamento da interface mobile, personalização de notificações e gamificação para engajamento.  
-- **Evolução tecnológica:** escalabilidade da infraestrutura em nuvem, criação de dashboards analíticos e maior integração com serviços de compliance regulatório.  
+- **Funcionalidades adicionais:** análise de risco mais sofisticada com uso de inteligência artificial, suporte para empréstimos parcelados com cronogramas de pagamento flexíveis.
+- **Melhorias na experiência do usuário:** aperfeiçoamento da interface mobile, implementação de login com biometria (digital ou facial), personalização de notificações e gamificação para engajamento.
+- **Evolução tecnológica:** unificação de contas, permitindo que um único CPF opere tanto como Tomador quanto como Investidor, escalabilidade da infraestrutura em nuvem, criação de dashboards analíticos e maior integração com serviços de compliance regulatório. 
 
 ## 3.4 Considerações Finais
 

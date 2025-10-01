@@ -1,8 +1,9 @@
 ---
 id: design_desenvolvimento
 title: Design e Desenvolvimento da Aplicação
+description: Descrição das decisões de design, arquitetura e implementação.
 ---
-
+ 
 # 2. Design e Desenvolvimento da Aplicação
 
 &emsp; Esta seção (2) tem como objetivo apresentar, de forma clara e estruturada, as decisões de design de experiência do usuário (UX/UI) e as etapas técnicas de desenvolvimento que deram forma ao NexPeer, aplicativo mobile desenvolvido para a QI Tech. A solução foi concebida para permitir transações financeiras peer-to-peer (P2P) de maneira intuitiva, segura e eficiente, refletindo os princípios da empresa: inovação tecnológica, conformidade regulatória, usabilidade e confiabilidade no setor financeiro.
@@ -339,154 +340,8 @@ src/
 
 &emsp; Para facilitar a visualização e o entendimento, disponibilizamos o diagrama de entidade-relacionamento (DER) em um formato gráfico.
 
-```mermaid
-erDiagram
-    %% Tabela usuarios
-    usuarios {
-        varchar id PK "UUID v4 gerado pela aplicação"
-        varchar email "Email de login, deve ser único"
-        varchar senha_hash "Senha do usuário armazenada de forma segura (hash)"
-        char cpf "Somente números, máscara tratada na aplicação"
-        varchar nome "Primeiro nome do usuário"
-        varchar sobrenome
-        varchar telefone "Formato internacional, ex: +5511999999999"
-        varchar tipo_perfil "Valores: 'tomador' ou 'investidor'"
-        varchar status_kyc "Valores: 'pendente', 'aprovado', 'rejeitado'"
-        varchar foto_usuario_url
-        varchar foto_documento_url
-        datetime criado_em
-        datetime atualizado_em
-    }
+  ![Texto Alternativo da Imagem](/img/NexPeer.svg)
 
-    %% Tabela perfil_tomador
-    perfil_tomador {
-        varchar usuario_id PK
-        int score_credito "Score de 0 a 1000"
-        decimal limite_credito
-        json open_finance_fake "Dados simulados do Open Finance"
-        datetime criado_em
-    }
-
-    %% Tabela perfil_investidor
-    perfil_investidor {
-        varchar usuario_id PK
-        decimal renda_mensal
-        decimal patrimonio_total
-        varchar perfil_risco "Valores: 'conservador', 'moderado', 'agressivo'"
-        decimal limite_investimento
-        json open_finance_fake "Dados simulados do Open Finance"
-        datetime criado_em
-    }
-
-    %% Tabela emprestimos
-    emprestimos {
-        varchar id PK
-        varchar tomador_id FK "ID do usuário tomador"
-        varchar status "Valores: 'pendente', 'financiado', 'ativo', 'concluido', 'inadimplente'"
-        decimal valor_solicitado
-        decimal valor_aprovado
-        decimal taxa_juros "Taxa mensal em %"
-        int prazo_meses
-        varchar finalidade
-        datetime financiado_em
-        datetime criado_em
-        datetime atualizado_em
-    }
-
-    %% Tabela investimentos
-    investimentos {
-        varchar id PK
-        varchar emprestimo_id FK "1 investidor por empréstimo (MVP)"
-        varchar investidor_id FK
-        decimal valor_investido
-        varchar status "Valores: 'ativo', 'concluido'"
-        datetime criado_em
-    }
-
-    %% Tabela contratos_ccb
-    contratos_ccb {
-        varchar id PK
-        varchar emprestimo_id FK
-        varchar investidor_id FK
-        varchar tomador_id FK
-        varchar hash_contrato "Hash do contrato na blockchain"
-        varchar pdf_url
-        boolean assinado_tomador
-        boolean assinado_investidor
-        datetime executado_em
-        datetime criado_em
-    }
-
-    %% Tabela parcelas
-    parcelas {
-        varchar id PK
-        varchar emprestimo_id FK
-        date data_vencimento
-        decimal valor_parcela
-        datetime pago_em
-        varchar status "Valores: 'pendente', 'pago', 'atrasado'"
-        datetime criado_em
-    }
-
-    %% Tabela repasses
-    repasses {
-        varchar id PK
-        varchar parcela_id FK
-        varchar investidor_id FK
-        decimal valor_repassado
-        decimal taxa_plataforma
-        datetime data_repassado
-        datetime criado_em
-    }
-
-    %% Tabela logs_acoes
-    logs_acoes {
-        varchar id PK
-        varchar usuario_id FK
-        varchar acao
-        text descricao
-        varchar ip_origem
-        datetime criado_em
-    }
-
-    %% Tabela historico_scores
-    historico_scores {
-        varchar id PK
-        varchar usuario_id FK
-        int score
-        varchar fonte_calculo "Ex: 'cadastro_inicial', 'reanalise_periodica'"
-        datetime criado_em
-    }
-
-    %% Tabela notificacoes
-    notificacoes {
-        varchar id PK
-        varchar usuario_id FK
-        varchar titulo
-        text mensagem
-        boolean lida
-        varchar tipo "Ex: 'pagamento_recebido', 'emprestimo_financiado', 'lembrete_vencimento'"
-        varchar link_relacionado
-        datetime criado_em
-    }
-
-    %% Relacionamentos
-    usuarios ||--o{ perfil_tomador : ""
-    usuarios ||--o{ perfil_investidor : ""
-    usuarios ||--o{ emprestimos : "tomador_id"
-    usuarios ||--o{ investimentos : "investidor_id"
-    usuarios ||--o{ contratos_ccb : "investidor_id"
-    usuarios ||--o{ contratos_ccb : "tomador_id"
-    usuarios ||--o{ logs_acoes : ""
-    usuarios ||--o{ historico_scores : ""
-    usuarios ||--o{ notificacoes : ""
-
-    emprestimos ||--o{ investimentos : "emprestimo_id"
-    emprestimos ||--o{ contratos_ccb : "emprestimo_id"
-    emprestimos ||--o{ parcelas : "emprestimo_id"
-
-    parcelas ||--o{ repasses : "parcela_id"
-```
 
 &emsp; A tabela `usuarios` serve como o núcleo da base de dados, contendo as informações essenciais de todos os usuários, como nome, email e CPF. O campo `tipo_perfil` determina se o usuário é um 'tomador' ou um 'investidor', vinculando-o a tabelas de perfil dedicadas (`perfil_tomador` e `perfil_investidor`) que armazenam dados específicos, como **score de crédito** ou **renda mensal**.
 
