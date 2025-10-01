@@ -5,13 +5,13 @@ title: Design e Desenvolvimento da Aplicação
 
 # 2. Design e Desenvolvimento da Aplicação
 
-Esta seção (2) tem como objetivo apresentar, de forma clara e estruturada, as decisões de design de experiência do usuário (UX/UI) e as etapas técnicas de desenvolvimento que deram forma ao NexPeer, aplicativo mobile desenvolvido para a QI Tech. A solução foi concebida para permitir transações financeiras peer-to-peer (P2P) de maneira intuitiva, segura e eficiente, refletindo os princípios da empresa: inovação tecnológica, conformidade regulatória, usabilidade e confiabilidade no setor financeiro.
+&emsp; Esta seção (2) tem como objetivo apresentar, de forma clara e estruturada, as decisões de design de experiência do usuário (UX/UI) e as etapas técnicas de desenvolvimento que deram forma ao NexPeer, aplicativo mobile desenvolvido para a QI Tech. A solução foi concebida para permitir transações financeiras peer-to-peer (P2P) de maneira intuitiva, segura e eficiente, refletindo os princípios da empresa: inovação tecnológica, conformidade regulatória, usabilidade e confiabilidade no setor financeiro.
 
-O processo de design priorizou uma jornada de usuário simplificada, com fluxos claros para cadastro, autenticação, envio e recebimento de valores. Paralelamente, o desenvolvimento seguiu uma arquitetura modular e escalável, contemplando a modelagem do banco de dados, a implementação de uma WebAPI RESTful para comunicação entre cliente e servidor, e a integração com serviços essenciais, como autenticação segura, validação de contas e processamento de transações.
+&emsp; O processo de design priorizou uma jornada de usuário simplificada, com fluxos claros para cadastro, autenticação, envio e recebimento de valores. Paralelamente, o desenvolvimento seguiu uma arquitetura modular e escalável, contemplando a modelagem do banco de dados, a implementação de uma WebAPI RESTful para comunicação entre cliente e servidor, e a integração com serviços essenciais, como autenticação segura, validação de contas e processamento de transações.
 
-Além disso, são detalhados os componentes-chave do sistema, incluindo as camadas de persistência, lógica de negócio e interface, permitindo compreender como cada parte se conecta e opera de forma integrada para entregar uma experiência fluida e segura ao usuário final.
+&emsp; Além disso, são detalhados os componentes-chave do sistema, incluindo as camadas de persistência, lógica de negócio e interface, permitindo compreender como cada parte se conecta e opera de forma integrada para entregar uma experiência fluida e segura ao usuário final.
 
-O objetivo desta parte da documentação é oferecer uma visão abrangente do processo de construção do NexPeer, destacando tanto as escolhas de design centradas no usuário quanto as boas práticas de engenharia de software adotadas durante o desenvolvimento, garantindo assim funcionalidade, desempenho, manutenibilidade e alinhamento com os mais altos padrões do mercado financeiro digital.
+&emsp; O objetivo desta parte da documentação é oferecer uma visão abrangente do processo de construção do NexPeer, destacando tanto as escolhas de design centradas no usuário quanto as boas práticas de engenharia de software adotadas durante o desenvolvimento, garantindo assim funcionalidade, desempenho, manutenibilidade e alinhamento com os mais altos padrões do mercado financeiro digital.
 
 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
   <a href="#tecnologias-utilizadas" style={{ textDecoration: 'none' }}>
@@ -53,7 +53,7 @@ O objetivo desta parte da documentação é oferecer uma visão abrangente do pr
 
 # 2.1. Tecnologias utilizadas {#tecnologias-utilizadas}
 
-Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços que serão utilizados para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
+&emsp; Esta subseção (2.1) detalha o conjunto de ferramentas, frameworks e serviços que serão utilizados para o desenvolvimento do NexPeer. As decisões técnicas foram orientadas pelos critérios de segurança, escalabilidade, facilidade de manutenção e alinhamento com as boas práticas do mercado financeiro digital.
 
 - **Aplicação Web (Full-Stack): Next.js 14+ com React 19:** Será utilizado Next.js 14 com App Router por ser um framework full-stack moderno que permitirá construir tanto a interface do usuário (com React 19) quanto a API de backend no mesmo projeto. O App Router oferece Server Components por padrão, otimizando a performance e permitindo renderização híbrida (server/client). O roteamento baseado em pastas otimizará a performance com Server Components por padrão e dará controle granular sobre a renderização no cliente. Para garantir a segurança e a qualidade do código em uma aplicação financeira complexa, será adotado o TypeScript 5, que fornecerá tipagem estática para prevenir bugs, facilitar a manutenção e habilitar autocompletar inteligente em todo o projeto.
 
@@ -93,7 +93,7 @@ O Prisma atuará como a camada de acesso a dados (Model), permitindo escrever co
 
 ## 2.2. Arquitetura {#arquitetura} 
 
-Esta subseção (2.2) detalha a arquitetura do NexPeer, que será desenvolvida seguindo o padrão **Next.js App Router** com elementos de **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso do App Router permitirá uma arquitetura híbrida que combina Server Components, Client Components e API Routes, facilitando a manutenção e o desenvolvimento colaborativo.
+&emsp; Esta subseção (2.2) detalha a arquitetura do NexPeer, que será desenvolvida seguindo o padrão **Next.js App Router** com elementos de **Model-View-Controller (MVC)** para garantir uma estrutura clara, modular e escalável. O uso do App Router permitirá uma arquitetura híbrida que combina Server Components, Client Components e API Routes, facilitando a manutenção e o desenvolvimento colaborativo.
 
 * **Camadas da Arquitetura:**
 
@@ -175,7 +175,7 @@ src/
     * **Validação Rápida:** Verificação básica de campos obrigatórios
     * **Interface Responsiva:** Design mobile-first para captura de documentos
 
-Esta arquitetura moderna combinará as melhores práticas do Next.js 14 com padrões estabelecidos, garantindo uma base sólida para crescimento e manutenção da plataforma NexPeer.
+&emsp; Esta arquitetura moderna combinará as melhores práticas do Next.js 14 com padrões estabelecidos, garantindo uma base sólida para crescimento e manutenção da plataforma NexPeer.
 
 
 ## 2.3. Protótipo de Alta Fidelidade {#protótipo-de-alta-fidelidade}
@@ -332,10 +332,12 @@ Esta arquitetura moderna combinará as melhores práticas do Next.js 14 com padr
 &emsp; A documentação apresentada abrange todos os fluxos de navegação essenciais da aplicação NextPeer, detalhando as jornadas completas dos perfis de Tomador e Investidor, bem como as telas comuns de autenticação, perfil e notificações. Este material serve como uma fonte central de referência para as equipes de design, desenvolvimento e testes, garantindo o alinhamento e a consistência da experiência do usuário ao longo do projeto.
 
 ## 2.4. Modelagem de Banco de Dados {#modelagem-de-banco-de-dados}
-Esta subseção (2.4) descreve a estrutura do banco de dados do NexPeer, projetada para ser a base robusta e escalável da nossa plataforma. A modelagem foi pensada para garantir a integridade dos dados e a eficiência nas operações financeiras, além de facilitar a rastreabilidade e a auditoria de todas as transações. Adotamos um modelo relacional que organiza as informações de forma lógica e interconectada, permitindo que a aplicação funcione de maneira fluida e segura.
+
+&emsp; Esta subseção (2.4) descreve a estrutura do banco de dados do NexPeer, projetada para ser a base robusta e escalável da nossa plataforma. A modelagem foi pensada para garantir a integridade dos dados e a eficiência nas operações financeiras, além de facilitar a rastreabilidade e a auditoria de todas as transações. Adotamos um modelo relacional que organiza as informações de forma lógica e interconectada, permitindo que a aplicação funcione de maneira fluida e segura.
 
 ### 2.4.1. Modelo Relacional
-Para facilitar a visualização e o entendimento, disponibilizamos o diagrama de entidade-relacionamento (DER) em um formato gráfico.
+
+&emsp; Para facilitar a visualização e o entendimento, disponibilizamos o diagrama de entidade-relacionamento (DER) em um formato gráfico.
 
 ```mermaid
 erDiagram
@@ -486,18 +488,17 @@ erDiagram
     parcelas ||--o{ repasses : "parcela_id"
 ```
 
-A tabela `usuarios` serve como o núcleo da base de dados, contendo as informações essenciais de todos os usuários, como nome, email e CPF. O campo `tipo_perfil` determina se o usuário é um 'tomador' ou um 'investidor', vinculando-o a tabelas de perfil dedicadas (`perfil_tomador` e `perfil_investidor`) que armazenam dados específicos, como **score de crédito** ou **renda mensal**.
+&emsp; A tabela `usuarios` serve como o núcleo da base de dados, contendo as informações essenciais de todos os usuários, como nome, email e CPF. O campo `tipo_perfil` determina se o usuário é um 'tomador' ou um 'investidor', vinculando-o a tabelas de perfil dedicadas (`perfil_tomador` e `perfil_investidor`) que armazenam dados específicos, como **score de crédito** ou **renda mensal**.
 
-As operações de empréstimo e investimento são gerenciadas pelas tabelas `emprestimos` e `investimentos`, que registram as solicitações dos tomadores e conectam o investidor ao empréstimo que ele apoiou. Para administrar os pagamentos, a tabela `parcelas` armazena as obrigações do tomador, enquanto a tabela `repasses` registra os pagamentos líquidos enviados aos investidores.
+&emsp; As operações de empréstimo e investimento são gerenciadas pelas tabelas `emprestimos` e `investimentos`, que registram as solicitações dos tomadores e conectam o investidor ao empréstimo que ele apoiou. Para administrar os pagamentos, a tabela `parcelas` armazena as obrigações do tomador, enquanto a tabela `repasses` registra os pagamentos líquidos enviados aos investidores.
 
-Para garantir a conformidade e a segurança, a tabela `contratos_ccb` armazena os registros dos contratos, assegurando a validade jurídica das operações. Adicionalmente, a tabela `logs_acoes` funciona como um sistema de auditoria, registrando as ações importantes dos usuários para fins de rastreabilidade. Finalmente, para aprimorar a experiência do usuário, a tabela `historico_scores` armazena o histórico da pontuação de crédito, e a tabela `notificacoes` é responsável por enviar alertas e confirmações importantes.
-
-### 2.4.2. Consultas SQL
+&emsp; Para garantir a conformidade e a segurança, a tabela `contratos_ccb` armazena os registros dos contratos, assegurando a validade jurídica das operações. Adicionalmente, a tabela `logs_acoes` funciona como um sistema de auditoria, registrando as ações importantes dos usuários para fins de rastreabilidade. Finalmente, para aprimorar a experiência do usuário, a tabela `historico_scores` armazena o histórico da pontuação de crédito, e a tabela `notificacoes` é responsável por enviar alertas e confirmações importantes.
 
 ## 2.5. WebAPI e Endpoints {#webapi-e-endpoints}
-Esta subseção (2.5) mostra como a aplicação se conecta à WebAPI e aos serviços externos que sustentam o funcionamento da aplicação, incluindo a comunicação com a blockchain. O objetivo é explicar de forma clara como os endpoints disponibilizam funcionalidades essenciais, como cadastro de usuários, solicitação de empréstimos, investimentos e execução de contratos financeiros peer-to-peer (P2P).
 
-A integração com a blockchain, através de smart contracts, garante que os contratos sejam registrados de forma imutável e auditável, oferecendo segurança jurídica e transparência nas transações. Nesta subseção, apresentamos o contrato principal utilizado no MVP e mostramos como ele se conecta à aplicação.
+&emsp; Esta subseção (2.5) mostra como a aplicação se conecta à WebAPI e aos serviços externos que sustentam o funcionamento da aplicação, incluindo a comunicação com a blockchain. O objetivo é explicar de forma clara como os endpoints disponibilizam funcionalidades essenciais, como cadastro de usuários, solicitação de empréstimos, investimentos e execução de contratos financeiros peer-to-peer (P2P).
+
+&emsp; A integração com a blockchain, através de smart contracts, garante que os contratos sejam registrados de forma imutável e auditável, oferecendo segurança jurídica e transparência nas transações. Nesta subseção, apresentamos o contrato principal utilizado no MVP e mostramos como ele se conecta à aplicação.
 
 ## 2.5.1 Integração com Smart Contract
 
@@ -566,19 +567,19 @@ contract SimpleP2PLoan {
 - Valida que apenas o tomador pode executar a função.  
 - Transferência é feita automaticamente para o investidor.  
 
-A utilização da blockchain no NexPeer traz diversos benefícios estratégicos e operacionais. Por ser uma tecnologia distribuída e imutável, ela garante que todas as transações realizadas por meio dos contratos P2P sejam registradas de forma segura e auditável, sem possibilidade de alteração posterior. Isso aumenta a confiança entre tomadores e investidores, pois cada empréstimo e cada pagamento ficam registrados de forma transparente e permanente. (GONZALEZ, 2025)
+&emsp; A utilização da blockchain no NexPeer traz diversos benefícios estratégicos e operacionais. Por ser uma tecnologia distribuída e imutável, ela garante que todas as transações realizadas por meio dos contratos P2P sejam registradas de forma segura e auditável, sem possibilidade de alteração posterior. Isso aumenta a confiança entre tomadores e investidores, pois cada empréstimo e cada pagamento ficam registrados de forma transparente e permanente. (GONZALEZ, 2025)
 
-Além disso, a blockchain permite a automação de processos críticos por meio de smart contracts, reduzindo a necessidade de intervenção manual e minimizando erros ou fraudes. A execução automática de contratos financeiros, como a liberação de valores e o repasse de pagamentos, proporciona maior eficiência operacional e agilidade na experiência do usuário.  
+&emsp; Além disso, a blockchain permite a automação de processos críticos por meio de smart contracts, reduzindo a necessidade de intervenção manual e minimizando erros ou fraudes. A execução automática de contratos financeiros, como a liberação de valores e o repasse de pagamentos, proporciona maior eficiência operacional e agilidade na experiência do usuário.  
 
-Outro ponto importante é a segurança jurídica: ao registrar os contratos na blockchain, o NexPeer garante um histórico verificável das transações, o que fortalece a conformidade regulatória e a proteção dos participantes da plataforma (THE COMPLIANCE DIGEST, 2024). 
+&emsp; Outro ponto importante é a segurança jurídica: ao registrar os contratos na blockchain, o NexPeer garante um histórico verificável das transações, o que fortalece a conformidade regulatória e a proteção dos participantes da plataforma (THE COMPLIANCE DIGEST, 2024). 
 
-A integração do NexPeer com a blockchain, através de smart contracts como o `SimpleP2PLoan`, representa um passo fundamental para combinar tecnologia financeira de ponta com segurança, transparência e confiabilidade. Essa abordagem assegura que todas as operações P2P sejam rastreáveis, automatizadas e auditáveis, oferecendo uma experiência segura tanto para tomadores quanto para investidores, alinhada aos padrões do mercado financeiro digital.
+&emsp; A integração do NexPeer com a blockchain, através de smart contracts como o `SimpleP2PLoan`, representa um passo fundamental para combinar tecnologia financeira de ponta com segurança, transparência e confiabilidade. Essa abordagem assegura que todas as operações P2P sejam rastreáveis, automatizadas e auditáveis, oferecendo uma experiência segura tanto para tomadores quanto para investidores, alinhada aos padrões do mercado financeiro digital.
 
 ### 2.6 Plano de Implementação de Segurança 
 
-A segurança numa aplicação financeira como o NextPeer é a prioridade máxima. Aqui está detalhado as medidas essenciais que implementaremos em cada camada da nossa arquitetura para garantir a integridade, a confidencialidade e a disponibilidade dos dados dos nossos utilizadores.
+&emsp; A segurança numa aplicação financeira como o NextPeer é a prioridade máxima. Aqui está detalhado as medidas essenciais que implementaremos em cada camada da nossa arquitetura para garantir a integridade, a confidencialidade e a disponibilidade dos dados dos nossos utilizadores.
 
-##### 1. Autenticação e Gestão de Sessão**
+##### 1. Autenticação e Gestão de Sessão
 O objetivo é garantir que apenas utilizadores legítimos possam aceder às suas contas e que as suas sessões permaneçam seguras.
 
 **1.1. Armazenamento Seguro de Senhas**
@@ -651,3 +652,5 @@ const emprestimo = await prisma.emprestimos.findFirst({
   }
 });
 ```
+
+&emsp; Este Plano de Implementação de Segurança estabelece o roteiro estratégico e tático para fortalecer a resiliência da nossa infraestrutura contra ameaças digitais e aumentar a confiança do usuário na utilização da plataforma.
