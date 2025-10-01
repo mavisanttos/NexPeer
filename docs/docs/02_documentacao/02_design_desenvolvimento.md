@@ -1,6 +1,7 @@
 ---
 id: design_desenvolvimento
 title: Design e Desenvolvimento da Aplicação
+description: Descrição das decisões de design, arquitetura e implementação.
 ---
  
 # 2. Design e Desenvolvimento da Aplicação

@@ -45,7 +45,7 @@ const config = {
     ({
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'NexPeer',
+        title: '',
         logo: {
           alt: 'NexPeer',
           src: 'img/nexpeer-logo.png',
